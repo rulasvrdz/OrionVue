@@ -11,30 +11,15 @@ export default class Languages extends Vue {
     public selectedLanguage: string = null;
     public languages: any = [
         {
+            key: 'es',
+            flag: 'flag-icon-mx',
+            label: 'languages.spanish'
+        },
+        {
             key: 'en',
             flag: 'flag-icon-us',
             label: 'languages.english'
         },
-        {
-            key: 'de',
-            flag: 'flag-icon-de',
-            label: 'languages.german'
-        },
-        {
-            key: 'fr',
-            flag: 'flag-icon-fr',
-            label: 'languages.french'
-        },
-        {
-            key: 'es',
-            flag: 'flag-icon-es',
-            label: 'languages.spanish'
-        },
-        {
-            key: 'tr',
-            flag: 'flag-icon-tr',
-            label: 'languages.turkish'
-        }
     ];
 
     public mounted() {
@@ -42,16 +27,10 @@ export default class Languages extends Vue {
     }
 
     get flagIcon() {
-        if (this.selectedLanguage === 'de') {
-            return 'flag-icon-de';
+        if (this.selectedLanguage === 'us') {
+            return 'flag-icon-us';
         }
-        if (this.selectedLanguage === 'fr') {
-            return 'flag-icon-fr';
-        }
-        if (this.selectedLanguage === 'es') {
-            return 'flag-icon-es';
-        }
-        return 'flag-icon-us';
+        return 'flag-icon-mx';
     }
 
     public changeLanguage(langCode: string) {

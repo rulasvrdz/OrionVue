@@ -41,7 +41,9 @@
         "terms": "terms",
         "register": "Register",
         "alreadyHaveMembership": "I already have a membership",
-        "userProfile": "User Profile"
+        "userProfile": "User Profile",
+        "reports": "Reports",
+        "submit": "Sumbit"
     },
     "messages": {
         "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",
@@ -52,9 +54,6 @@
     },
     "languages": {
         "english": "English",
-        "german": "German",
-        "french": "French",
-        "spanish": "Spanish",
-        "turkish": "Turkish"
+        "spanish": "Spanish"
     }
 }

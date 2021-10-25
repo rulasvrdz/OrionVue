@@ -12,6 +12,7 @@ import RecoverPassword from '@/modules/recover-password/recover-password.vue';
 import PrivacyPolicy from '@/modules/privacy-policy/privacy-policy.vue';
 import SubMenu from '@/pages/main-menu/sub-menu/sub-menu.vue';
 import Blank from '@/pages/blank/blank.vue';
+import NewReport from '@/pages/newReports/newReport.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -19,15 +20,23 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Main',
         component: Main,
         meta: {
-            requiresAuth: true
+            requiresAuth: false
         },
         children: [
+            {
+                path: 'newReport',
+                name: 'newReport',
+                component: NewReport,
+                meta: {
+                    requiresAuth: false
+                }
+            },
             {
                 path: 'profile',
                 name: 'Profile',
                 component: Profile,
                 meta: {
-                    requiresAuth: true
+                    requiresAuth: false
                 }
             },
             {
@@ -35,7 +44,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Blank',
                 component: Blank,
                 meta: {
-                    requiresAuth: true
+                    requiresAuth: false
                 }
             },
             {
@@ -43,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Sub Menu 1',
                 component: SubMenu,
                 meta: {
-                    requiresAuth: true
+                    requiresAuth: false
                 }
             },
             {
@@ -51,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Sub Menu 2',
                 component: Blank,
                 meta: {
-                    requiresAuth: true
+                    requiresAuth: false
                 }
             },
             {
@@ -59,7 +68,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Dashboard',
                 component: Dashboard,
                 meta: {
-                    requiresAuth: true
+                    requiresAuth: false
                 }
             }
         ]
@@ -69,7 +78,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Login',
         component: Login,
         meta: {
-            requiresUnauth: true
+            requiresUnauth: false
         }
     },
     {
@@ -77,7 +86,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Register',
         component: Register,
         meta: {
-            requiresUnauth: true
+            requiresUnauth: false
         }
     },
     {
@@ -85,7 +94,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'ForgotPassword',
         component: ForgotPassword,
         meta: {
-            requiresUnauth: true
+            requiresUnauth: false
         }
     },
     {
@@ -93,7 +102,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'RecoverPassword',
         component: RecoverPassword,
         meta: {
-            requiresUnauth: true
+            requiresUnauth: false
         }
     },
     {
@@ -108,14 +117,8 @@ const router = createRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !store.getters['auth/token']) {
-        next('/login');
-    } else if (to.meta.requiresUnauth && !!store.getters['auth/token']) {
-        next('/');
-    } else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//         next();
+// });
 
 export default router;

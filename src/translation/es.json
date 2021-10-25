@@ -30,7 +30,7 @@
         "friends": "Friends",
         "signOut": "Sign out",
         "memberSince": "Member since",
-        "home": "Home",
+        "home": "Inicio",
         "contact": "Contact",
         "dashboard": "Dashboard",
         "blank": "Blank",
@@ -41,7 +41,9 @@
         "terms": "terms",
         "register": "Register",
         "alreadyHaveMembership": "I already have a membership",
-        "userProfile": "User Profile"
+        "userProfile": "User Profile",
+        "reports": "Reportes",
+        "submit": "Enviar"
     },
     "messages": {
         "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",
