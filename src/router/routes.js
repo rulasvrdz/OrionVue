@@ -10,6 +10,7 @@ const Icons = () => import(/* webpackChunkName: "common" */ "@/pages/Icons.vue")
 const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const NewReport = () => import(/* webpackChunkName: "common" */ "@/pages/NewReport.vue");
 
 const routes = [
   {
@@ -19,7 +20,7 @@ const routes = [
     children: [
       {
         path: "dashboard",
-        name: "dashboard",
+        name: "Inicio",
         component: Dashboard
       },
       {
@@ -51,6 +52,11 @@ const routes = [
         path: "table-list",
         name: "table-list",
         component: TableList
+      },
+      {
+        path: "new-report",
+        name: "Nuevo Reporte",
+        component: NewReport
       }
     ]
   },

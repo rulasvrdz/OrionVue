@@ -1,5 +1,5 @@
 <template>
-  <table class="table tablesorter" :class="tableClass">
+  <table class="table tablesorter" :class="tableClass" style="overflow:hidden">
     <thead :class="theadClasses">
     <tr>
       <slot name="columns">

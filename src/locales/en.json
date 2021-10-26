@@ -10,8 +10,8 @@
       "Purchases",
       "Sessions"
     ],
-    "tasks": "Tasks({count})",
-    "today": "Today",
+    "tasks": "Delitos({count})",
+    "today": "Hoy",
     "dropdown": {
       "action": "Action",
       "anotherAction": "Another Action",

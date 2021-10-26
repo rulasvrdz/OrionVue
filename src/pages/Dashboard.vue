@@ -14,7 +14,7 @@
                 <div class="btn-group btn-group-toggle"
                      :class="isRTL ? 'float-left' : 'float-right'"
                      data-toggle="buttons">
-                  <label v-for="(option, index) in bigLineChartCategories"
+                  <label v-for="(option, index) in crimes"
                          :key="option"
                          class="btn btn-sm btn-primary btn-simple"
                          :class="{active: bigLineChart.activeIndex === index}"
@@ -42,7 +42,7 @@
         </card>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-4" :class="{'text-right': isRTL}">
         <card type="chart">
           <template slot="header">
@@ -92,38 +92,34 @@
           </div>
         </card>
       </div>
-    </div>
+    </div> -->
     <div class="row">
-      <div class="col-lg-6 col-md-12">
+      <!-- <div class="col-12">
         <card type="tasks" :header-classes="{'text-right': isRTL}">
           <template slot="header">
             <h6 class="title d-inline">{{$t('dashboard.tasks', {count: 5})}}</h6>
             <p class="card-category d-inline">{{$t('dashboard.today')}}</p>
-            <base-dropdown menu-on-right=""
-                           tag="div"
-                           title-classes="btn btn-link btn-icon"
-                           aria-label="Settings menu"
-                           :class="{'float-left': isRTL}">
-              <i slot="title" class="tim-icons icon-settings-gear-63"></i>
-              <a class="dropdown-item" href="#pablo">{{$t('dashboard.dropdown.action')}}</a>
-              <a class="dropdown-item" href="#pablo">{{$t('dashboard.dropdown.anotherAction')}}</a>
-              <a class="dropdown-item" href="#pablo">{{$t('dashboard.dropdown.somethingElse')}}</a>
-            </base-dropdown>
+            <router-link to="/new-report" tag="button" class="btn btn-primary" style="float:right">Nuevo Reporte</router-link>
           </template>
           <div class="table-full-width table-responsive">
             <task-list></task-list>
           </div>
         </card>
-      </div>
-      <div class="col-lg-6 col-md-12">
+      </div> -->
+      <div class="col-12">
         <card class="card" :header-classes="{'text-right': isRTL}">
-          <h4 slot="header" class="card-title">{{$t('dashboard.simpleTable')}}</h4>
-          <div class="table-responsive">
+          <h4 slot="header" class="card-title">{{$t('dashboard.simpleTable')}}
+            <router-link to="/new-report" tag="button" class="btn btn-primary" style="float:right">Nuevo Reporte</router-link></h4>
+          <div class="table-responsive" style="overflow:auto; height:500px">
             <user-table></user-table>
           </div>
         </card>
       </div>
     </div>
+    <card type="plain" title="Google Maps">
+      <div id="map" class="map">
+      </div>
+    </card>
   </div>
 </template>
 <script>
@@ -143,6 +139,7 @@
     },
     data() {
       return {
+        crimes: ["Delito1", "Delito2", "Delito3"],
         bigLineChart: {
           allData: [
             [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
@@ -234,7 +231,9 @@
         return this.$rtl.isRTL;
       },
       bigLineChartCategories() {
-        return this.$t('dashboard.chartCategories');
+      "Accounts",
+      "Purchases",
+      "Sessions"
       }
     },
     methods: {
@@ -263,6 +262,211 @@
       }
     },
     mounted() {
+      let myLatlng = new window.google.maps.LatLng(40.748817, -73.985428);
+    let mapOptions = {
+      zoom: 13,
+      center: myLatlng,
+      scrollwheel: true, //we disable de scroll over the map, it is a really annoing when you scroll through page
+      styles: [{
+        "elementType": "geometry",
+        "stylers": [{
+          "color": "#1d2c4d"
+        }]
+      },
+        {
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#8ec3b9"
+          }]
+        },
+        {
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "color": "#1a3646"
+          }]
+        },
+        {
+          "featureType": "administrative.country",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#4b6878"
+          }]
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#64779e"
+          }]
+        },
+        {
+          "featureType": "administrative.province",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#4b6878"
+          }]
+        },
+        {
+          "featureType": "landscape.man_made",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#334e87"
+          }]
+        },
+        {
+          "featureType": "landscape.natural",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#023e58"
+          }]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#283d6a"
+          }]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#6f9ba5"
+          }]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "color": "#1d2c4d"
+          }]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "geometry.fill",
+          "stylers": [{
+            "color": "#023e58"
+          }]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#3C7680"
+          }]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#304a7d"
+          }]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#98a5be"
+          }]
+        },
+        {
+          "featureType": "road",
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "color": "#1d2c4d"
+          }]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#2c6675"
+          }]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.fill",
+          "stylers": [{
+            "color": "#9d2a80"
+          }]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "geometry.stroke",
+          "stylers": [{
+            "color": "#9d2a80"
+          }]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#b0d5ce"
+          }]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "color": "#023e58"
+          }]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#98a5be"
+          }]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "labels.text.stroke",
+          "stylers": [{
+            "color": "#1d2c4d"
+          }]
+        },
+        {
+          "featureType": "transit.line",
+          "elementType": "geometry.fill",
+          "stylers": [{
+            "color": "#283d6a"
+          }]
+        },
+        {
+          "featureType": "transit.station",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#3a4762"
+          }]
+        },
+        {
+          "featureType": "water",
+          "elementType": "geometry",
+          "stylers": [{
+            "color": "#0e1626"
+          }]
+        },
+        {
+          "featureType": "water",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+            "color": "#4e6d70"
+          }]
+        }
+      ]
+    };
+    let map = new window.google.maps.Map(
+      document.getElementById("map"),
+      mapOptions
+    );
+
+    let marker = new window.google.maps.Marker({
+      position: myLatlng,
+      title: "Hello World!"
+    });
+
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
       this.i18n = this.$i18n;
       if (this.enableRTL) {
         this.i18n.locale = 'ar';
@@ -275,7 +479,8 @@
         this.i18n.locale = 'en';
         this.$rtl.disableRTL();
       }
-    }
+    },
+    
   };
 </script>
 <style>
