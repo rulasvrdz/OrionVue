@@ -21,13 +21,26 @@ import router from "./router/index";
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n"
 import './registerServiceWorker'
+
+//import VueFire from "vuefire"
+
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onValue } from "firebase/database";
+
+import {config} from "./firebase"
+
 Vue.use(BlackDashboard);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 
+//Vue.use(VueFire)
 /* eslint-disable no-new */
 new Vue({
   router,
   i18n,
   render: h => h(App)
 }).$mount("#app");
+
+const app = initializeApp(config);
+export const database = getDatabase(app);
+

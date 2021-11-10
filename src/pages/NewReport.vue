@@ -2,56 +2,25 @@
   <card>
     <h5 slot="header" class="title text-uppercase">Generar nuevo reporte</h5>
     <div class="row">
-      <div class="col-md-4 pr-md-1">
-          <label>Selecciona el delito</label>
-                <select class="form-control">
-                  <option>Delito 1</option>
-                  <option>Delito 2</option>
-                  <option>Delito 3</option>
-                  <option>Delito 4</option>
-                  <option>Delito 5</option>
-                </select>
-      </div>
-      <div class="col-md-4">
-          <label>Selecciona el Municipio</label>
-                <select class="form-control">
-                  <option>Opcion 1</option>
-                  <option>Opcion 2</option>
-                  <option>Opcion 3</option>
-                  <option>Opcion 4</option>
-                  <option>Opcion 5</option>
-                </select>
-      </div>
-      <div class="col-md-4 pl-md-1">
-            <label>Hora:</label>
-            <input class="form-control" type="text" placeholder="HH:MM">
-      </div>
-    </div>
-    <div class="row">
-      
       <div class="col-md-6 pr-md-1">
-          
-            <label>Ubicacion:</label>
-            <input class="form-control" type="text" placeholder="Calle, Colonia, CP">
+          <label>Selecciona el delito</label>
+                <select v-model="crime" class="form-control">
+                  <option v-for="(crime, index) in crimes"  :key="index">{{crime.NAME}}</option>
+                </select>
+      </div>
+      <div class="col-md-6">
+          <label>Selecciona el Municipio</label>
+            <select v-model="countyId" class="form-control" @change="getCount" :disabled="crime == null">
+              <option v-for="(county, index) in map" :key="index" :value="index">{{county.MUNICIPIO}}</option>
+            </select>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <base-input>
-          <label>Breve descripcion</label>
-          <textarea rows="4" cols="80"
-                    class="form-control"
-                    placeholder="Brinda una breve descripcion de lo ocurrido"
-                    v-model="model.about">
-
-              </textarea>
-        </base-input>
-      </div>
-    </div>
-    <button @click="send" class="btn btn-primary">Enviar</button>
+    <button @click="sendData" class="btn btn-primary">Enviar</button>
   </card>
 </template>
 <script>
+import {database} from "@/main.js"
+import {ref, onValue, update} from "firebase/database"
   export default {
     props: {
       model: {
@@ -61,10 +30,55 @@
         }
       }
     },
+    data(){
+      return{
+        crimes: null,
+        map: null,
+        crime: null,
+        countyId: null,
+        crimeCount: null,
+        reports: null
+      }
+    },
+    async mounted(){
+    await this.getInfo()  
+    await console.log(this.crimes)
+    },
     methods:{
         send(){
             console.log("Reporte enviado")
+        },
+        getInfo(){
+          onValue(ref(database, "DELITOS"), (data) => {
+            this.crimes = data.val()
+          })
+          onValue(ref(database, "MAPA"), (data) => {
+            this.map = data.val()
+          })
+        },
+        getCount(){
+          onValue(ref(database, "REPORTES/" + this.countyId), (data) => {
+            this.reports = data.val()
+            console.log("data", data.val())
+          })
+        },
+        sendData(){
+          console.log("keys", this.reports)
+          // if(this.crime != null && this.countyId != null){
+          //   console.log(this.crime)
+          //     update(ref(database, "REPORTES/" + this.countyId),{
+          //       [this.crime]:0
+
+
+          //   });
+          // }
+
         }
+    },
+    watch:{
+      // map(val){
+      //   console.log("hola", val)
+      // }
     }
   }
 </script>
