@@ -20,6 +20,10 @@ import router from "./router/index";
 
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n"
+
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
 import './registerServiceWorker'
 
 //import VueFire from "vuefire"
@@ -29,6 +33,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 
 import {config} from "./firebase"
 
+Vue.use(VueToast)
 Vue.use(BlackDashboard);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
@@ -43,4 +48,3 @@ new Vue({
 
 const app = initializeApp(config);
 export const database = getDatabase(app);
-

@@ -11,17 +11,29 @@ const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
 const NewReport = () => import(/* webpackChunkName: "common" */ "@/pages/NewReport.vue");
+const Home = () => import(/* webpackChunkName: "common" */ "@/pages/Home.vue");
+const About = () => import(/* webpackChunkName: "common" */ "@/pages/About.vue");
 
 const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/home",
     children: [
+      {
+        path: "home",
+        name: "Inicio",
+        component: Home
+      },
       {
         path: "dashboard",
         name: "Inicio",
         component: Dashboard
+      },
+      {
+        path: "about",
+        name: "Inicio",
+        component: About
       },
       {
         path: "profile",

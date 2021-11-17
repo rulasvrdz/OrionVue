@@ -5,12 +5,14 @@
       <div class="col-md-6 pr-md-1">
           <label>Selecciona el delito</label>
                 <select v-model="crime" class="form-control">
-                  <option v-for="(crime, index) in crimes"  :key="index">{{crime.NAME}}</option>
+                  <option :value=null selected disabled>Selecciona un delito</option>
+                  <option v-for="(crime, index) in crimes"  :key="index" :value="crime.CRIME">{{crime.NAME}}</option>
                 </select>
       </div>
       <div class="col-md-6">
           <label>Selecciona el Municipio</label>
             <select v-model="countyId" class="form-control" @change="getCount" :disabled="crime == null">
+              <option :value=null selected disabled>Selecciona un municipio</option>
               <option v-for="(county, index) in map" :key="index" :value="index">{{county.MUNICIPIO}}</option>
             </select>
       </div>
@@ -40,9 +42,8 @@ import {ref, onValue, update} from "firebase/database"
         reports: null
       }
     },
-    async mounted(){
-    await this.getInfo()  
-    await console.log(this.crimes)
+    mounted(){
+    this.getInfo()  
     },
     methods:{
         send(){
@@ -57,21 +58,27 @@ import {ref, onValue, update} from "firebase/database"
           })
         },
         getCount(){
-          onValue(ref(database, "REPORTES/" + this.countyId), (data) => {
+          onValue(ref(database, "REPORTES/" + this.countyId + "/" + this.crime), (data) => {
             this.reports = data.val()
-            console.log("data", data.val())
           })
         },
         sendData(){
-          console.log("keys", this.reports)
-          // if(this.crime != null && this.countyId != null){
-          //   console.log(this.crime)
-          //     update(ref(database, "REPORTES/" + this.countyId),{
-          //       [this.crime]:0
 
-
-          //   });
-          // }
+          if(this.crime != null && this.countyId != null){
+              update(ref(database, "REPORTES/" + this.countyId),{
+                [this.crime]: this.reports + 1
+            });
+            this.$toast.open({type: "success", message: "Reporte enviado"})
+            this.resetAll()
+          }else{ 
+            this.$toast.open({type: "error", message: "Favor de llenar los campos"}) 
+          }
+        },
+        resetAll(){
+          this.crime= null,
+          this.countyId= null,
+          this.crimeCount= null,
+          this.reports= null
 
         }
     },
