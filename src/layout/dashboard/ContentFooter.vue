@@ -3,11 +3,11 @@
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="http://www.creative-tim.com">
-            Creative Tim
+          <a class="nav-link" target="_blank" href="https://umg.edu.mx/portal/">
+            Universidad Marista de Guadalajara
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="http://blog.creative-tim.com">
             Blog
           </a>
@@ -16,12 +16,13 @@
           <a class="nav-link" href="http://www.creative-tim.com/license">
             Licenses
           </a>
-        </li>
+        </li> -->
       </ul>
       <div class="copyright">
-        © {{year}} made with <i class="tim-icons icon-heart-2"></i> by
-        <a href="https://www.binarcode.com" target="_blank" rel="noopener">Binar Code</a>&nbsp;&
-        <a href="https://www.creative-tim.com" target="_blank" rel="noopener">Creative Tim</a> for a better web.
+        © {{year}}
+        Developed by <router-link to="/about">Insert Name</router-link>
+        Using 
+        <a href="https://www.creative-tim.com" target="_blank" rel="noopener">Creative Tim's</a> themplate.
       </div>
     </div>
   </footer>

@@ -8,7 +8,7 @@
       <div class="block block-three"></div>
       <div class="block block-four"></div>
       <a href="#">
-        <img class="avatar" src="img/anime6.png" alt="...">
+        <img class="avatar" :src="user.img" alt="...">
         <h5 class="title">{{user.fullName}}</h5>
       </a>
       <p class="description">
@@ -20,14 +20,14 @@
       {{user.description}}
     </p>
     <div slot="footer" class="button-container">
-      <base-button icon round class="btn-facebook">
-        <i class="fab fa-facebook"></i>
+      <base-button icon round class="btn-mail">
+        <a class="white" :href="'mailto:'+user.mail"><span>&#9993;</span></a>
       </base-button>
-      <base-button icon round class="btn-twitter">
-        <i class="fab fa-twitter"></i>
+      <base-button icon round class="btn-github">
+        <a class="white" target="_blank" :href="user.git"><i class="fab fa-github"></i></a>
       </base-button>
-      <base-button icon round class="btn-google">
-        <i class="fab fa-google-plus"></i>
+      <base-button icon round class="btn-linkedin">
+        <a class="white" target="_blank" :href="user.linkedin"><i class="fab fa-linkedin"></i></a>
       </base-button>
     </div>
   </card>
@@ -45,4 +45,11 @@
   }
 </script>
 <style>
+.white{
+  color: whitesmoke!important;;
+}
+span {
+  content: "\2709";
+  font-size: 18px;
+}
 </style>

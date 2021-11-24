@@ -10,7 +10,7 @@ const Icons = () => import(/* webpackChunkName: "common" */ "@/pages/Icons.vue")
 const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
-const NewReport = () => import(/* webpackChunkName: "common" */ "@/pages/NewReport.vue");
+const Comunity = () => import(/* webpackChunkName: "common" */ "@/pages/Comunity.vue");
 const Home = () => import(/* webpackChunkName: "common" */ "@/pages/Home.vue");
 const About = () => import(/* webpackChunkName: "common" */ "@/pages/About.vue");
 
@@ -66,9 +66,9 @@ const routes = [
         component: TableList
       },
       {
-        path: "new-report",
-        name: "Nuevo Reporte",
-        component: NewReport
+        path: "comunity",
+        name: "Comunity",
+        component: Comunity
       }
     ]
   },

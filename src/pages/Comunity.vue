@@ -1,33 +1,23 @@
 <template>
   <div>
+      <div class="row mb-4">
+          <div class="col-12">
+              <button class="btn btn-primary text-uppercase" @click="console('reporte')" style="width:100%"> Realizar un Reporte</button>
+          </div>
+          <div class="col-12">
+              <button class="btn btn-primary text-uppercase" @click="console('alerta')" style="width:100%"> Nueva Alerta</button>
+          </div>
+      </div>
     <div class="row">
       <div class="col-12">
         <card type="chart">
           <template slot="header">
             <div class="row">
               <div class="col-sm-4" :class="isRTL ? 'text-right' : 'text-left'">
-                <h5 class="card-category">Delitos por año</h5>
+                <h5 class="card-category">Delitos reportados</h5>
                 <h2 class="card-title">Delitos</h2>
               </div>
               <div class="col-sm-4 text-center">
-                
-                <label style="    padding: 4px 14px;" >Selecciona un año</label>
-                <div class="btn-group btn-group-toggle"
-                     :class="isRTL ? 'float-left' : 'float-right'"
-                     data-toggle="buttons">
-                  <label v-for="(option, index) in years.years"
-                         :key="option"
-                         class="btn btn-sm btn-primary btn-simple"
-                         :class="{active: year === years.ids[index]}"
-                         :id="index">
-                    <input type="radio"
-                           @click="chooseYear(years.ids[index])"
-                           name="options" autocomplete="off"
-                           :checked="year === years.ids[index]">
-                    {{option}}
-                  </label>
-                  
-                </div>
               </div>
               <div class="col-md-4 pr-md-1">
                 <select v-model="crime" @change="isLoadingMap = true" class="form-control">
@@ -61,6 +51,58 @@
                 :geojson="polygonMap"
                 :options="options"
                 :options-style="styleFunction"
+              />
+            </l-map>
+          <!-- <l-map v-if="!isLoadingMap" style="height: 600px" :zoom="zoom" :center="center">
+            <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+            <l-polygon v-for="(poly, index) in polygonMap" :key="index" :lat-lngs="polygonMap[index].coordinates" :color="polygon.color" :fillColor="polygonMap[index].color"></l-polygon>
+          </l-map> -->
+        </card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <card type="chart">
+          <template slot="header">
+            <div class="row">
+              <div class="col-sm-4" :class="isRTL ? 'text-right' : 'text-left'">
+                <h5 class="card-category">Alertas de la comunidad</h5>
+                <h2 class="card-title">Puntos de alerta</h2>
+              </div>
+              <div class="col-sm-4 text-center">
+              </div>
+              <div class="col-md-4 pr-md-1">
+                <select v-model="crime" @change="isLoadingMap = true" class="form-control">
+                  <option :value=null selected disabled>Selecciona una alerta</option>
+                  <option v-for="(crime, index) in crimes"  :key="index" :value="crime.NAME">{{crime.NAME}}</option>
+                </select>
+      </div>
+            </div>
+          </template>
+          <!-- <div class="chart-area">
+            <line-chart style="height: 100%"
+                        ref="bigChart"
+                        chart-id="big-line-chart"
+                        :chart-data="bigLineChart.chartData"
+                        :gradient-colors="bigLineChart.gradientColors"
+                        :gradient-stops="bigLineChart.gradientStops"
+                        :extra-options="bigLineChart.extraOptions">
+            </line-chart>
+          </div> -->
+            <l-map
+              :zoom="zoom"
+              :center="center"
+              style="height: 500px"
+            >
+              <l-tile-layer
+                :url="url"
+                :attribution="attribution"
+              />
+              <l-geo-json
+              v-if="!isLoadingMap"
+                :geojson="polygonMap"
+                :options="options"
+                :options-style="styleFunction2"
               />
             </l-map>
           <!-- <l-map v-if="!isLoadingMap" style="height: 600px" :zoom="zoom" :center="center">
@@ -121,21 +163,6 @@
         </card>
       </div>
     </div> -->
-    
-      <div class="row mb-4">
-        <div class="text-center col-12">
-          <h3 class="text-uppercase">analisis de los datos</h3>
-        </div>
-          <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('reporte')" style="width:100%"> Analisis Descriptivo</a>
-          </div>
-          <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('alerta')" style="width:100%"> Analisis Diagnostico</a>
-          </div>
-          <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('alerta')" style="width:100%"> Analisis Predictivo</a>
-          </div>
-      </div>
   </div>
 </template>
 <script>
@@ -298,6 +325,21 @@
           };
         };
       },
+      
+      
+      styleFunction2() {
+        const fillColor = this.getColor; // important! need touch fillColor in computed for re-calculate when change fillColor
+        return (feature) => {
+          return {
+            weight: 2,
+            color: "#d725bb",
+            opacity: 1,
+            fillColor: '#00000000',
+            fillOpacity: .65
+          };
+        };
+      },
+
       getColor() {
           return (d) => {
             if(d>400){
@@ -344,6 +386,9 @@
       }
     },
     methods: {
+        console(a){
+            console.log(a)
+        },
       getInfo(){
         this.isLoadingMap = true
         onValue(ref(database, "DELITOS"), (data) => {
@@ -388,38 +433,6 @@
         }
         this.isLoadingMap = false
       },
-      chooseYear(index){
-        let crime
-        this.year = index
-        this.getInfo()
-        if(this.crime == null){
-          crime = "ABUSO SEXUAL INFANTIL"
-        }else{crime = this.crime}
-        this.generateMap(crime)
-      },
-      initBigChart(index) {
-        let chartData = {
-          datasets: [{
-            fill: true,
-            borderColor: config.colors.primary,
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: config.colors.primary,
-            pointBorderColor: 'rgba(255,255,255,0)',
-            pointHoverBackgroundColor: config.colors.primary,
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: this.bigLineChart.allData[index]
-          }],
-          labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-        }
-        // this.$refs.bigChart.updateGradients(chartData);
-        this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
-      }
     },
     async mounted() {
       await this.getInfo()

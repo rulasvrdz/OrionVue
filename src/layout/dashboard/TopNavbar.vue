@@ -13,7 +13,7 @@
             <span class="navbar-toggler-bar bar3"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="#pablo" style="margin-top:5%">{{routeName}}</a>
+        <span class="navbar-brand" style="margin-top:5%">{{routeName}}</span>
       </div>
       <button class="navbar-toggler" type="button"
               @click="toggleMenu"

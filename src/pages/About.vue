@@ -1,37 +1,96 @@
 <template>
-  <div class="row">
-    <div class="col-md-8">
-      <edit-profile-form :model="model">
-      </edit-profile-form>
+  <div>
+    <div class="row">
+      <div class=" text-center col-12">
+        <h1> Nosotros </h1>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-md-8">
+        <carousel 
+        :perPage="1" 
+        :centerMode='true' 
+        :autoplay="true" 
+        :autoplayTimeout='3500' 
+        :paginationPosition="'bottom-overlay'"
+        :autoplayHoverPause='true'
+        :paginationActiveColor="'#e14eca'"
+        :loop='true'
+        :speed='1000'
+        :paginationEnabled="true">
+          <slide>
+            <div class="col-12">
+              <user-card :user="Adrian"></user-card>
+            </div>
+          </slide>
+          <slide>
+            <div class="col-12">
+              <user-card :user="Mariano"></user-card>
+            </div>
+          </slide>
+          <slide>
+            <div class="col-12">
+              <user-card :user="Raul"></user-card>
+            </div>
+          </slide>
+          <slide>
+            <div class="col-12">
+              <user-card :user="Charly"></user-card>
+            </div>
+          </slide>
+        </carousel>
+      </div>
     </div>
-    <div class="col-md-4">
-      <user-card :user="user"></user-card>
+    <div class="row pt-5">
+      <div class=" text-center col-12">
+        <h3>Fuentes</h3>
+        <p>Datos Abiertos - Jalisco. (2021). Retrieved 18 September 2021, from 
+https://datos.jalisco.gob.mx</p>
+      </div>
     </div>
   </div>
 </template>
 <script>
   import EditProfileForm from './Profile/EditProfileForm';
   import UserCard from './Profile/UserCard'
+  import { Carousel, Slide } from 'vue-carousel';
   export default {
     components: {
+      Carousel,
+      Slide,
       EditProfileForm,
       UserCard
     },
     data() {
       return {
-        model: {
-          company: 'Creative Code Inc.',
-          email: 'mike@email.com',
-          username: 'michael23',
-          firstName: 'Mike',
-          lastName: 'Andrew',
-          address: 'Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09',
-          city: 'Melbourne',
-          country: 'Australia',
-          about: 'Lamborghini Mercy, Your chick she so thirsty, I\'m in that two seat Lambo.'
+        Adrian: {
+          linkedin:'https://linkedin.com',
+          git: 'https://www.github.com/rulasvrdz',
+          mail:'rulasvrdz@gmail.com',
+          fullName: 'Adrian Ochoa',
+          title: 'Ceo/Co-Founder',
+          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
         },
-        user: {
-          fullName: 'Mike Andrew',
+        Mariano: {
+          linkedin:'https://linkedin.com',
+          git: 'https://www.github.com/rulasvrdz',
+          mail:'rulasvrdz@gmail.com',
+          fullName: 'Mariano Junco',
+          title: 'Ceo/Co-Founder',
+          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+        },
+        Raul: {
+          linkedin:'https://www.linkedin.com/in/raul-verduzco/',
+          git: 'https://www.github.com/rulasvrdz',
+          mail:'rulasvrdz@gmail.com',
+          fullName: 'Raul Verduzco',
+          title: 'Ceo/Co-Founder',
+          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+        },
+        Charly: {
+          linkedin:'https://linkedin.com',
+          git: 'https://www.github.com/rulasvrdz',
+          mail:'rulasvrdz@gmail.com',
+          fullName: 'Carlos Villalobos',
           title: 'Ceo/Co-Founder',
           description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
         }
