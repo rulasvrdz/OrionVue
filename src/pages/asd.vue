@@ -48,7 +48,7 @@
                         :extra-options="bigLineChart.extraOptions">
             </line-chart>
           </div> -->
-            <l-map
+            <!-- <l-map
               :zoom="zoom"
               :center="center"
               style="height: 500px"
@@ -61,9 +61,44 @@
               v-if="!isLoadingMap"
                 :geojson="polygonMap"
                 :options="options"
-                :options-style="styleFunction"
+                :options-style="styleFunction(e)"
               />
-            </l-map>
+            </l-map> -->
+            <l-map 
+              :center="center" 
+              :zoom="zoom" 
+              style="height: 500px;"
+                  v-if="!isLoadingMap"
+                  v-html="!isLoadingMap"
+              >
+                <l-choropleth-layer 
+                  v-if="!isLoadingMap" 
+                  v-html="!isLoadingMap"
+                  :data="countyData" 
+                  titleKey="county" 
+                  idKey="county_id" 
+                  :value="value" 
+                  :extraValues="extraValues" 
+                  geojsonIdKey="countyId" 
+                  :geojson="polygonMap" 
+                  :colorScale="colorScale"
+                  strokeColor="d725bb">
+                    <template slot-scope="props">
+                      <l-info-control 
+                        :show="!isLoadingMap"
+                        :item="props.currentItem" 
+                        :unit="props.unit" 
+                        title="Municipio" 
+                        placeholder="Pase el cursor sobre un municipio"/>
+                      <l-reference-chart 
+                        title="Cantidad de incidencias en el año" 
+                        :colorScale="colorScale" 
+                        :min="props.min" 
+                        :max="400" 
+                        position="bottomright"/>
+                    </template>
+                </l-choropleth-layer>
+            </l-map>    
           <!-- <l-map v-if="!isLoadingMap" style="height: 600px" :zoom="zoom" :center="center">
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
             <l-polygon v-for="(poly, index) in polygonMap" :key="index" :lat-lngs="polygonMap[index].coordinates" :color="polygon.color" :fillColor="polygonMap[index].color"></l-polygon>
@@ -160,6 +195,8 @@
 
   import { latLng } from "leaflet";
   import { LMap, LTileLayer, LMarker, LGeoJson } from "vue2-leaflet";
+  
+import { InfoControl, ReferenceChart, ChoroplethLayer } from 'vue-choropleth'
   import 'leaflet/dist/leaflet.css';
 
   export default {
@@ -171,7 +208,12 @@
       LMap,
       LTileLayer,
       LGeoJson,
-      LMarker
+      LMarker,
+      
+    'l-info-control': InfoControl, 
+    'l-reference-chart': ReferenceChart, 
+    'l-choropleth-layer': ChoroplethLayer 
+
     },
     data() {
       return {
@@ -194,6 +236,19 @@
         counts: {},
         polygons: null,
         data: null,
+        countyData: [],
+        value: {
+          key: "count",
+          metric: "Incidencias"
+        },
+        extraValues: [{
+          key: "crime",
+          metric: ""
+        }],
+        colorScale: ["FFEDA0",  "800026"],
+        mapOptions: {
+          attributionControl: false,
+        },
         bigLineChart: {
           allData: [
             [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100],
@@ -295,43 +350,16 @@
       "Purchases",
       "Sessions"
       },
-      styleFunction() {
-        const fillColor = this.getColor; // important! need touch fillColor in computed for re-calculate when change fillColor
-        return (feature) => {
+      styleFunction(feature) {
+        const fillColor = this.getColor(feature.properties.count); // important! need touch fillColor in computed for re-calculate when change fillColor
+        return () => {
           return {
             weight: 2,
             color: "#d725bb",
             opacity: 1,
-            fillColor: this.getColor(feature.properties.count),
-            fillOpacity: .65
+            fillColor: fillColor,
+            fillOpacity: .5
           };
-        };
-      },
-      getColor() {
-          return (d) => {
-            if(d>400){
-              return "#7e0001"
-            }
-            if(d>100){
-              return "#b82101"
-            }
-            if(d>50){
-              return "#f44300"
-            }
-            if(d>10){
-              return "#f96200"
-            }
-            if(d>5){
-              return "#ff8200"
-            }
-            if(d>0){
-              return "#fff154"
-            }
-            if(d==0){
-              return "#0000000"
-            }
-
-          // '#BD0026' : d > 50  ? '#E31A1C' : d > 30  ? '#FC4E2A' : d > 20   ? '#FD8D3C' : d > 10   ? '#FEB24C' : d > 5   ? '#FED976' : '#FFEDA0';    
         };
       },
       onEachFeatureFunction() {
@@ -352,7 +380,20 @@
         };
       }
     },
-    methods: {
+    methods: {getColor(d) {
+        for(let element in d){
+          return d > 150 ? '#800026' :
+                d > 100  ? '#BD0026' :
+                d > 50  ? '#E31A1C' :
+                d > 30  ? '#FC4E2A' :
+                d > 20   ? '#FD8D3C' :
+                d > 10   ? '#FEB24C' :
+                d > 5   ? '#FED976' :
+                            '#FFEDA0';
+
+        }
+                
+        },
       getInfo(){
         this.isLoadingMap = true
         onValue(ref(database, "DELITOS"), (data) => {
@@ -370,14 +411,12 @@
         if(this.crime == null){
           crime = "ABUSO SEXUAL INFANTIL"
         }
-        else{crime = this.crime}
         for(const polygon in this.polygons){
           Object.assign(this.counts, {[polygon]: this.data[polygon][crime]})
         }
-        
-        await setTimeout(() => {
+                await setTimeout(() => {
           this.parsePoly(crime)
-        }, 0);
+        }, 1000);
 
         // let municipio = "Acatic"
         //   Object.assign(this.polygonMap, {[municipio]: [], color:'#0f0'})
@@ -388,11 +427,13 @@
         let aux = []
         Object.assign(this.polygonMap, {"type": "FeatureCollection", "features": []})
         for(const polygon in this.polygons){
+          
           this.polygons[polygon].geometry.coordinates[0].forEach((element, index) => {
             aux.push(element)
           });
           this.polygons[polygon].geometry.coordinates[0] = aux
-          this.polygonMap.features.push({"type": "Feature", "geometry": this.polygons[polygon].geometry, "properties":{"crime": crime, "count": this.counts[polygon], "county": this.polygons[polygon].MUNICIPIO}})
+          this.polygonMap.features.push({"type": "Feature", "geometry": this.polygons[polygon].geometry, "geometry_name": "geom", "properties":{"crime": crime, "count": this.counts[polygon], "county": this.polygons[polygon].MUNICIPIO, "countyId": polygon, }})
+          this.countyData.push({county_id: polygon, county: this.polygons[polygon].MUNICIPIO, count: this.counts[polygon], "crime": crime,})
           aux = []
         }
         this.isLoadingMap = false
@@ -403,7 +444,7 @@
         this.getInfo()
         if(this.crime == null){
           crime = "ABUSO SEXUAL INFANTIL"
-        }else{crime = this.crime}
+        }
         this.generateMap(crime)
       },
       initBigChart(index) {
@@ -448,4 +489,7 @@
   };
 </script>
 <style>
+.leaflet-container{
+  background-color: #1e1e2d!important;
+}
 </style>

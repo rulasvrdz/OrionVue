@@ -18,7 +18,7 @@
               alt="">
           </div>
         </a>
-        <a href="/" class="simple-text logo-normal">Orion Vue
+        <a href="/" class="simple-text logo-normal">Orion Jalisco
         </a>
       </div>
       <slot>

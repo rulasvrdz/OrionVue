@@ -27,12 +27,12 @@ const routes = [
       },
       {
         path: "dashboard",
-        name: "Inicio",
+        name: "Informacion",
         component: Dashboard
       },
       {
         path: "about",
-        name: "Inicio",
+        name: "Acerca De",
         component: About
       },
       {
