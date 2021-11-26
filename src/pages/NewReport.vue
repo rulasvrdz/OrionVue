@@ -66,7 +66,8 @@ import {ref, onValue, update} from "firebase/database"
 
           if(this.crime != null && this.countyId != null){
               update(ref(database, "REPORTES/" + this.countyId),{
-                [this.crime]: this.reports + 1
+                // [this.crime]: this.reports + 1
+                [this.crime]: 0
             });
             this.$toast.open({type: "success", message: "Reporte enviado"})
             this.resetAll()
