@@ -16,7 +16,7 @@
       </p>
     </div>
     <p></p>
-    <p class="card-description">
+    <p class="card-description text-center">
       {{user.description}}
     </p>
     <div slot="footer" class="button-container">

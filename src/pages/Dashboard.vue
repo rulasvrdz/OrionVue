@@ -122,18 +122,24 @@
       </div>
     </div> -->
     
-      <div class="row mb-4">
+      <div class="row mb-4 justify-content-center">
         <div class="text-center col-12">
           <h3 class="text-uppercase">analisis de los datos</h3>
         </div>
           <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('reporte')" style="width:100%"> Analisis Descriptivo</a>
+              <a href="https://piorion16.firebaseapp.com/" target="_blank" class="btn btn-primary text-uppercase"  style="width:100%"> diagnostico 2016</a>
           </div>
           <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('alerta')" style="width:100%"> Analisis Diagnostico</a>
+              <a href="https://piorion17-7e933.firebaseapp.com/" target="_blank" class="btn btn-primary text-uppercase"  style="width:100%"> Diagnostico 2017</a>
           </div>
           <div class="col-4">
-              <a href="/" class="btn btn-primary text-uppercase" @click="console('alerta')" style="width:100%"> Analisis Predictivo</a>
+              <a href="https://piorion18.firebaseapp.com/" target="_blank" class="btn btn-primary text-uppercase"  style="width:100%"> diagnostico 2018</a>
+          </div>
+          <div class="col-4">
+              <a href="https://piorion16-17.firebaseapp.com/" target="_blank" class="btn btn-primary text-uppercase"  style="width:100%"> Comparacion 2016 - 2017</a>
+          </div>
+          <div class="col-4">
+              <a href="https://piorion17-18-26903.firebaseapp.com/" target="_blank" class="btn btn-primary text-uppercase"  style="width:100%"> Comparacion 2017 - 2018</a>
           </div>
       </div>
   </div>

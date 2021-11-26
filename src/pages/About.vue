@@ -43,9 +43,23 @@
     <div class="row pt-5">
       <div class=" text-center col-12">
         <h3>Fuentes</h3>
-        <p>Datos Abiertos - Jalisco. (2021). Retrieved 18 September 2021, from 
-https://datos.jalisco.gob.mx</p>
-      </div>
+        <p class="text-justify">[1] B Incidencia delictiva 2 – IIEG. (2021). Retrieved 10 September 2021, from 
+          <a target="_blank" href="https://iieg.gob.mx/ns/?page_id=1958"> https://iieg.gob.mx/ns/?page_id=1958</a>
+        </p>
+        <p class="text-justify">[2] Además de pandemia por COVID-19, México enfrenta propagación de noticias falsas. (2021).
+           Retrieved 23 November 2021, from <a target="_blank" href="https://www.dgcs.unam.mx/boletin/bdboletin/2020_318.html "> 
+           https://www.dgcs.unam.mx/boletin/bdboletin/2020_318.html </a>
+        </p>
+        <p class="text-justify">[3] Datos Abiertos - Jalisco. (2021). Retrieved 18 September 2021, from
+          <a target="_blank" href="https://datos.jalisco.gob.mx/"> https://datos.jalisco.gob.mx/</a>
+        </p>
+        <p class="text-justify">[4] Jalisco destaca en delincuencia y armas | NTR Guadalajara. (2021). Retrieved 18 September 2021, from 
+          <a target="_blank" href="https://ntrguadalajara.com/post.php?id_nota=161527#:~:text=En%202020%2C%20Jalisco%20fue%20el,delitos%20de%20armas%20de%20fuego.&text=En%202015%20el%20registro%20alcanz%C3%B3%20un%20m%C3%A1ximo%20de%2078%20investigaciones"> https://ntrguadalajara.com/</a>
+        </p>
+        <p class="text-justify">[5] (2021). Retrieved 18 September 2021, from
+          <a target="_blank" href="http://www.injuve.es/sites/default/files/2017/46/publicaciones/revista108_14-nuevas-formas-consumir-informacion.pdf">http://www.injuve.es</a>
+        </p>
+        </div>
     </div>
   </div>
 </template>
@@ -63,36 +77,40 @@ https://datos.jalisco.gob.mx</p>
     data() {
       return {
         Adrian: {
-          linkedin:'https://linkedin.com',
-          git: 'https://www.github.com/rulasvrdz',
-          mail:'rulasvrdz@gmail.com',
-          fullName: 'Adrian Ochoa',
+          img: 'https://res.cloudinary.com/raulumg/image/upload/v1637961546/ORION/adrian_h5xidg.jpg',
+          linkedin:'https://www.linkedin.com/in/adri%C3%A1nochoa/',
+          git: 'https://github.com/Adrian8aS',
+          mail:'ppadrian8a@outlook.com',
+          fullName: 'Adrián Ochoa',
           title: 'Ceo/Co-Founder',
-          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+          description: `Análisis de datos | Desarrollo Base de datos | Documentación `,
         },
         Mariano: {
-          linkedin:'https://linkedin.com',
-          git: 'https://www.github.com/rulasvrdz',
-          mail:'rulasvrdz@gmail.com',
+          img: 'https://res.cloudinary.com/raulumg/image/upload/v1637961737/ORION/mariano_vembyr.jpg',
+          linkedin:'https://www.linkedin.com/in/angel-mariano-junco-ruiz-150913',
+          git: 'https://github.com/Legan-Aminora',
+          mail:'changeek2@outlook.com',
           fullName: 'Mariano Junco',
           title: 'Ceo/Co-Founder',
-          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+          description: `Análisis de datos`,
         },
         Raul: {
+          img: 'https://res.cloudinary.com/raulumg/image/upload/v1637961976/ORION/raul_sm68pc.jpg',
           linkedin:'https://www.linkedin.com/in/raul-verduzco/',
           git: 'https://www.github.com/rulasvrdz',
           mail:'rulasvrdz@gmail.com',
-          fullName: 'Raul Verduzco',
+          fullName: 'Raúl Verduzco',
           title: 'Ceo/Co-Founder',
-          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+          description: `Desarrollo pagina web`,
         },
         Charly: {
-          linkedin:'https://linkedin.com',
-          git: 'https://www.github.com/rulasvrdz',
-          mail:'rulasvrdz@gmail.com',
+          img: 'https://res.cloudinary.com/raulumg/image/upload/v1637961639/ORION/charly_phoniz.jpg',
+          linkedin:'https://www.linkedin.com/in/carlosvillalobos587/',
+          git: 'https://github.com/Carlos-Villalobos',
+          mail:'charlievilla587@gmail.com',
           fullName: 'Carlos Villalobos',
           title: 'Ceo/Co-Founder',
-          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+          description: `Desarrollo pagina web`,
         }
       }
     }

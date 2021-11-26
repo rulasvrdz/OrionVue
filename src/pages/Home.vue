@@ -2,39 +2,42 @@
   <div>
     <div class="mb-3">
         <h1> Introducción </h1>
-        <p>¿Sabías que jalisco según el Instituto De Información Estadística Y Geográfica De Jalisco 
-            (2021) somos el tercer estado con más registros de delitos? Así como la cantidad de 
+        <p class="text-justify">¿Sabías que jalisco somos el tercer estado con más registros de delitos? <sup><a target="_blank" href="https://iieg.gob.mx/ns/?page_id=1958">1</a></sup>
+            Así como la cantidad de 
             reportes sobre abuso infantil, robo a casa habitación, feminicidios y otros delitos que 
-            serán descritos más adelante, estos son proporcionados por el estado de Jalisco, pero su 
-            entendimiento no es del todo claro o por lo menos no de manera visual. Por eso a lo largo 
-            de este documento plantearemos la posibilidad de nuestra alternativa de proyecto para buscar 
-            una solución al respecto desde nuestros conocimientos como estudiantes de cibernética y 
-            sistemas computacionales.</p>
+            serán descritos más adelante, estos son proporcionados por el estado de Jalisco, pero 
+            su entendimiento no es del todo claro o por lo menos no de manera visual. Por eso se ha desarrollado esta
+            pagina web, buscando una solución al respecto desde nuestros conocimientos como estudiantes de 
+            cibernética y sistemas computacionales.
+          </p>
     </div>
     <div class="mb-3">
         <h1> Problematica </h1>
-        <p>Hoy en día no existe la menor duda que gracias al internet se puede acceder a una gran cantidad 
-            de información, pero en realidad no todos estos datos son verdaderos o actualizados y peor 
-            aún de la inmensa cantidad de información no toda es fácil de entender. Tan solo hace falta 
-            ver que “En México la epidemia de desinformación sobre Covid-19 alcanzó el segundo país, 
-            después de Turquía, con mayor generación de noticias falsas” (Aristegui, 2020). 
-            <br />
+        <p class="text-justify">Hoy en día no existe la menor duda que gracias al internet se puede acceder a una gran 
+            cantidad de información, pero en realidad no todos estos datos son verdaderos o 
+            actualizados y peor aún de la inmensa cantidad de información no toda es fácil de 
+            entender. Tan solo hace falta ver que “En México la epidemia de desinformación sobre 
+            Covid-19 alcanzó el segundo país, después de Turquía, con mayor generación de 
+            noticias falsas” <sup><a target="_blank" href="https://www.dgcs.unam.mx/boletin/bdboletin/2020_318.html">2</a></sup>.
+            <br /> <br>
             Es un hecho que la desinformación existe en México y en todo el mundo, pero lo peligroso 
-            radica en que esta puede afectar la conducta de las personas y su toma de decisiones, por 
-            eso en temas de seguridad y protección civil es indispensable contar con datos con alta 
-            disponibilidad, consistencia y tolerancia a fallos. Para que con esto las personas puedan 
-            tomar las decisiones más oportunas logrando salvaguardad su seguridad y la de sus seres 
-            queridos. Por eso es importante que la sociedad se rodee de fuentes confiables y entendibles, 
-            como por ejemplo la página de datos abiertos de jalisco la cual dispone de 17 archivos en 
-            materia de seguridad y protección civil, lamentablemente esta información es poco conocida a 
-            pesar del gran valor que tiene, debido a que se encuentra en formatos .xls, .csv y .kml lo cual 
-            hace que sean difíciles de entender o por lo menos requeriría un lago tiempo extraer algo de 
-            utilidad como determinar que municipio es el menos conflictivo en temas de delito para, por ejemplo, 
-            poder mudarse.</p>
+            radica en que esta puede afectar la conducta de las personas y su toma de decisiones,
+            por eso en temas de seguridad y protección civil es indispensable contar con datos con 
+            alta disponibilidad, consistencia y tolerancia a fallos. Para que con esto las personas 
+            puedan tomar las decisiones más oportunas logrando salvaguardad su seguridad y la de 
+            sus seres queridos. Por eso es importante que la sociedad se rodee de fuentes confiables 
+            y entendibles, como por ejemplo la página de datos abiertos de jalisco 
+            <sup><a target="_blank" href="https://datos.jalisco.gob.mx/">3</a></sup>
+            la cual dispone
+            de 17 archivos en materia de seguridad y protección civil, lamentablemente esta 
+            información es poco conocida a pesar del gran valor que tiene, debido a que se encuentra 
+            en formatos .xls, .csv y .kml lo cual hace que sean difíciles de entender o por lo menos 
+            requeriría un lago tiempo extraer algo de utilidad como determinar que municipio es el 
+            menos conflictivo en temas de delito para, por ejemplo, poder mudarse</p>
     </div>
     <div class="mb-3">
         <h1> Objetivos </h1>
-        <p>
+        <p class="text-justify">
             <ul>
                 <li>Realizar la inscripción del proyecto.</li>
                 <li>Rectificar que el planteamiento del problema es correcto para poder darle continuidad al proyecto.</li>
@@ -53,24 +56,25 @@
     </div>
     <div class="mb-3">
         <h1> Justificación </h1>
-        <p>
-            Últimamente se han reportado y visto un incremento de actos de delincuencia 
-            en algunos sectores de Guadalajara, Zapopan, Tlaquepaque, etc. En un artículo 
-            que se publicó en El Diario NTR (2021) el cual habla de que Jalisco fue el 
-            segundo estado del país con mayor cantidad de delitos de delincuencia organizada. 
-            Por lo cual los ciudadanos se sienten cada vez más desconfiados e inseguros al 
-            salir de su casa ya sea para ir al trabajo, estudiar o para alguna necesidad. 
-            Por eso nosotros tenemos la idea de hacer una página web informativa con dashboards 
-            que permitan al usuario ver en tiempo real como están las zonas y si hay reportes de 
-            algún acto delictivo, esto con la finalidad de que el usuario tome sus debidas 
-            precauciones para llegar a su destino final, ya que los jóvenes hoy en día se 
-            informan por medio de las redes y medios sociales que se encuentran en la red 
-            según una investigación hecha por Barbara Yuste (2020). Por lo cual nosotros 
-            planteamos que se podría reducir un poco los actos de delincuencia y dar una 
-            confianza a las personas, ya que los usuarios podrán estar haciendo reportes 
-            y con eso alertar a las autoridades para que se estén vigilando las zonas y 
-            así poder salir con más confianza y estar seguros de que rutas tomar para 
-            evitar algún acto de delincuencia.
+        <p class="text-justify">
+            Últimamente se han reportado y visto un incremento de actos de delincuencia en algunos 
+            sectores de Guadalajara, Zapopan, Tlaquepaque, etc. En un artículo que se publicó en 
+            El Diario NTR (2021) el cual habla de que Jalisco fue el segundo estado del país con
+            mayor cantidad de delitos de delincuencia organizada<sup><a target="_blank" href="https://ntrguadalajara.com/post.php?id_nota=161527#:~:text=En%202020%2C%20Jalisco%20fue%20el,delitos%20de%20armas%20de%20fuego.&text=En%202015%20el%20registro%20alcanz%C3%B3%20un%20m%C3%A1ximo%20de%2078%20investigaciones">
+            4</a></sup>. Por lo cual los ciudadanos se 
+            sienten cada vez más desconfiados e inseguros al salir de su casa ya sea para ir al 
+            trabajo, estudiar o para alguna necesidad. Por eso nosotros tenemos la idea de hacer 
+            una página web informativa con dashboards que permitan al usuario ver en tiempo real 
+            como están las zonas y si hay reportes de algún acto delictivo, esto con la finalidad de 
+            que el usuario tome sus debidas precauciones para llegar a su destino final, ya que los 
+            jóvenes hoy en día se informan por medio de las redes y medios sociales que se 
+            encuentran en la red según una investigación hecha por Barbara Yuste (2020)<sup><a target="_blank" href="http://www.injuve.es/sites/default/files/2017/46/publicaciones/revista108_14-nuevas-formas-consumir-informacion.pdf">
+            5</a></sup>. Por lo 
+            cual nosotros planteamos que se podría reducir un poco los actos de delincuencia y dar 
+            una confianza a las personas, ya que los usuarios podrán estar haciendo reportes y con 
+            eso alertar a las autoridades para que se estén vigilando las zonas y así poder salir con 
+            más confianza y estar seguros de que rutas tomar para evitar algún acto de delincuencia.
+
         </p>
     </div>
   </div>

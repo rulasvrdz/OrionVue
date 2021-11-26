@@ -60,13 +60,13 @@
               </div>
               <div class="col-sm-4 text-center">
               </div>
-              <div class="col-md-4 pr-md-1">
+              <!-- <div class="col-md-4 pr-md-1">
                 <select v-model="alert" class="form-control">
                   <option :value=null selected disabled>Selecciona una alerta</option>
                   <option :value="'All'" selected >Todas</option>
                   <option v-for="(alert, index) in alerts"  :key="index" :value="alert.name">{{alert.name}}</option>
                 </select>
-      </div>
+              </div> -->
             </div>
           </template>
           <h3 v-if="points == null" class="text-center">NO HAY PUNTOS DE ALERTA</h3>
@@ -258,13 +258,12 @@
         }
         return (feature, layer) => {
           layer.bindTooltip(
-            "<div>Municipio:" +
-              feature.properties.county +
-            "<div>Delito:" +
-              feature.properties.alert +
-              "</div><div>Incidencias: " +
-              feature.properties.count +
-              "</div>",
+              feature.properties.county ,
+            // "<div>Delito:" +
+            //   feature.properties.alert +
+            //   "</div><div>Incidencias: " +
+            //   feature.properties.count +
+            //   "</div>",
             { permanent: false, sticky: true }
           );
         };
